@@ -1,4 +1,4 @@
-..discord.py
+discord.py
 asyncio
 Status
 praw
