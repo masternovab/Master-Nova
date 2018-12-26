@@ -1886,4 +1886,5 @@ async def hack(ctx, user: discord.Member):
 
 
 
-client.run('NTIwNTUwNDEyMjE5MzE4Mjcy.Dv-mHA.iaoN15pFeyWHLgBKgDC0yxr8k8g')
+client.run(os.getenv
+('NTIwNTUwNDEyMjE5MzE4Mjcy.Dv-mHA.iaoN15pFeyWHLgBKgDC0yxr8k8g'))
