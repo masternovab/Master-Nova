@@ -194,7 +194,7 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             await client.say(embed=embed)
 
 @client.command(pass_context = True)
-async def meme(ctx):
+async def reme(ctx):
     colour = '0x' + '008000'
     async with aiohttp.ClientSession() as session:
         async with session.get("https://api.reddit.com/r/me_irl/random") as r:
