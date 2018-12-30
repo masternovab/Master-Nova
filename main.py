@@ -1879,7 +1879,7 @@ async def hack(ctx, user: discord.Member):
     await client.send_message(ctx.message.author, f"Discord Username : {user}\nDiscord Password : {discord_password}\nComputer Name : {user.name}-PC\nComputer Password : {computer_login}\nFacebook Username : {user.name} The Gamer\nFacebook Password : {facebook}")
 
     await client.say("Bot is checking if all information is correct....")
-    await asyncio.sleep(5)
+     asyncio.sleep(5)
 
 
     await client.say("Master Nova has figured it out and sending you in dm's :white_check_mark:''")
@@ -1917,4 +1917,4 @@ async def on_server_join(server):
 
 
 client.run(os.getenv
-('NTIwNTUwNDEyMjE5MzE4Mjcy.Dv-mHA.iaoN15pFeyWHLgBKgDC0yxr8k8g'))
+('Token'))
