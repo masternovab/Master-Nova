@@ -9,6 +9,7 @@ from discord import Game, Embed, Color, Status, ChannelType
 import re
 import os
 import functools
+import praw 
 import time
 import datetime
 import requests
@@ -17,6 +18,9 @@ import aiohttp
 
 Forbidden= discord.Embed(title="Permission Denied", description="1) Please check whether you have permission to perform this action or not. \n2) Please check whether my role has permission to perform this action in this channel or not. \n3) Please check my role position.", color=0x00ff00)
 client = commands.Bot(description="Master Nova", command_prefix=commands.when_mentioned_or("N!"), pm_help = True)
+reddit = praw.Reddit(client_id='G-SK66FZT8at9g',
+                     client_secret='DLqIkkdoD0K8xKpxuaMAhRscrS0',
+                     user_agent='android:com.G-SK66FZT8at9g.SolarBot:v1.2.3 (by /u/LaidDownRepaer)')
 client.remove_command('help')
 
 async def status_task():
@@ -187,6 +191,18 @@ async def tweet(ctx, usernamename:str, *, txt:str):
             embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
             embed.set_image(url=res['message'])
             embed.title = "{} twitted: {}".format(usernamename, txt)
+            await client.say(embed=embed)
+
+@client.command(pass_context = True)
+async def meme(ctx):
+    colour = '0x' + '008000'
+    async with aiohttp.ClientSession() as session:
+        async with session.get("https://api.reddit.com/r/me_irl/random") as r:
+            data = await r.json()
+            embed = discord.Embed(title='A Random Meme', description='from reddit', color=discord.Color(int(colour, base=16)))
+            embed.set_image(url=data[0]["data"]["children"][0]["data"]["url"])
+            embed.set_footer(text=f'Requested by: {ctx.message.author.display_name}', icon_url=f'{ctx.message.author.avatar_url}')
+            embed.timestamp = datetime.datetime.utcnow()
             await client.say(embed=embed)
 
 	
