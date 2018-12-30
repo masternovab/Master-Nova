@@ -1884,6 +1884,36 @@ async def hack(ctx, user: discord.Member):
 
     await client.say("Master Nova has figured it out and sending you in dm's :white_check_mark:''")
 
+@client.command(pass_context=True)
+async def square(number):
+    if len(number) > 20: # <- Here we test if the number is longer than 20 digits
+        await client.say('For anti-spam purposes, please enter a number with less than 20 characters')
+    else:
+        squared_value = int(number) * int(number)
+        await bot.say(str(number) + " squared is " + str(squared_value))
+
+# After that, we add in the add command
+
+@client.command(aliases=['Add', 'ADD'])
+async def add(left : int, right : int):
+    """Adds two numbers together."""
+    await client.say(left + right)
+
+# Finally, we implment the minus command
+
+@client.command(aliases=['Minus', 'MINUS', 'Subtract', 'subtract', 'SUBTRACT'])
+async def minus(left : int, right : int):
+    """Takes two numbers away."""
+    await client.say(left - right)
+
+
+@client.event
+async def on_server_join(server):
+    await client.send_message(server,
+        "**Sup nerds** *Thanks for inviting me to this smelly server,I am a roaster So beware*"
+        " **Get started with:** `N!`")
+
+
 
 
 client.run(os.getenv
