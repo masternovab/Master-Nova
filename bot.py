@@ -1934,5 +1934,5 @@ async def on_server_join(server):
 
 
 
-client.run('NTIwNTUwNDEyMjE5MzE4Mjcy.Dwd2Rw.04tjomEldWePAS3AnWA7mea8Tl0')
+client.run('Token')
 
