@@ -1934,5 +1934,7 @@ async def on_server_join(server):
 
 
 
-client.run(os.getenv('Token')
 
+
+
+client.run(os.getenv('Token'))
