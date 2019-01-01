@@ -1932,7 +1932,53 @@ async def on_server_join(server):
         " **Get started with:** `N!`")
 
 
-
+@commands.command(pass_context=True, no_pm=True)
+async def join(self, ctx, *, channel : discord.Channel):
+        """Joins a voice channel."""
+        try:
+            await self.create_voice_client(channel)
+        except discord.ClientException:
+            await self.client.say('Already in a voice channel...')
+        except discord.InvalidArgument:
+            await self.client.say('This is not a voice channel...')
+        else:
+            await self.client.say('Ready to play audio in ' + channel.name)    
+           
+@commands.command(pass_context=True, no_pm=True)
+async def play(self, ctx, *, song : str):
+        """Plays a song.
+        If there is a song currently in the queue, then it is
+        queued until the next song is done playing.
+        This command automatically searches as well from YouTube.
+        The list of supported sites can be found here:
+        https://rg3.github.io/youtube-dl/supportedsites.html
+        """
+        state = self.get_voice_state(ctx.message.server)
+        print(state)
+        opts = {
+            'default_search': 'auto',
+            'quiet': True,
+        }
+ 
+        if state.voice is None:
+            success = await ctx.invoke(self.summon)
+            if not success:
+                return
+ 
+        try:
+            player = await state.voice.create_ytdl_player(song, ytdl_options=opts, after=state.toggle_next)
+            print(player)
+        except Exception as e:
+            fmt = 'An error occurred while processing this request: ```py\n{}: {}\n```'
+            await self.client.send_message(ctx.message.channel, fmt.format(type(e).__name__, e))
+        else:
+            player.volume = 0.6
+            entry = VoiceEntry(ctx.message, player)
+            print(entry)
+            print(ctx.message)
+            await self.client.say('Enqueued ' + str(entry))
+            await state.songs.put(entry)
+       
 
 
 
