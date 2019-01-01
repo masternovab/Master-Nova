@@ -2,5 +2,5 @@ discord.py
 asyncio
 praw
 Status
-
+PyNaCl
 
