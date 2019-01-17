@@ -2212,7 +2212,7 @@ async def movie(ctx, *, name:str=None):
             await client.say(embed=embed)
             
 @client.event            
-async def on_command_error(self, ctx, error):
+async def on_command_error(self, ctx, error, *args):
         """The event triggered when an error is raised while invoking a command.
         ctx   : Context
         error : Exception"""
