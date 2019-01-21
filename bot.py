@@ -1860,7 +1860,7 @@ async def on_reaction_remove(reaction, user):
 async def on_message(message):
     user_add_xp(message.author.id, 2)
     await client.process_commands(message)
-    if message.content.lower().startswith('mv!rank'):
+    if message.content.lower().startswith('N!rank'):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         level=int(get_xp(message.author.id)/100)
         msgs=int(get_xp(message.author.id)/2)
