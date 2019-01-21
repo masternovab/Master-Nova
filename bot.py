@@ -295,7 +295,7 @@ async def ownerinfo(ctx):
     embed = discord.Embed(title="Information about owner", description="Main Creator: King Nova", color=0x00ff00)
     embed.set_footer(text="Copyright @KingNova#0416")
     embed.set_author(name=" Bot Owner Name- KingNova#0416: 477463812786618388\nTag<!--Back")
-    embed.add_field(name="Site- https://discordbots.org/bot/515403515217313795", value="Thanks for adding our bot", inline=True)
+    embed.add_field(name="Site- https://discordbots.org/bot/Dododid", value="Thanks for adding our bot", inline=True)
     await client.say(embed=embed)
 
 	
