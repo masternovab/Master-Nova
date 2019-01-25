@@ -1789,73 +1789,7 @@ async def embed(ctx, *args):
       await client.send_message(ctx.message.channel, embed=Embed(color = color, description=text))
       await client.delete_message(ctx.message)    
  
-@client.event
-async def on_message_edit(before, after):
-    if before.content == after.content:
-      return
-    if before.author == client.user:
-      return
-    else:
-      user = before.author
-      member = after.author
-      for channel in user.server.channels:
-        if channel.name == '╰☆☆-MasterNova-log-☆☆╮':
-            r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-            embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-            embed.set_author(name='Message edited')
-            embed.add_field(name = 'User: **{0}**'.format(user.name),value ='UserID: **{}**'.format(user.id),inline = False)
-            embed.add_field(name = 'Before:',value ='{}'.format(before.content),inline = False)
-            embed.add_field(name = 'After:',value ='{}'.format(after.content),inline = False)
-            embed.add_field(name = 'Channel:',value ='{}'.format(before.channel.name),inline = False)
-            await client.send_message(channel, embed=embed)
- 
-@client.event
-async def on_message_delete(message):
-    if not message.author.bot:
-      channelname = '╰☆☆-MasterNova-log-☆☆╮'
-      logchannel=None
-      for channel in message.server.channels:
-        if channel.name == channelname:
-          user = message.author
-      for channel in user.server.channels:
-        if channel.name == '╰☆☆-MasterNova-log-☆☆╮':
-          logchannel = channel
-          r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-          embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-          embed.set_author(name='Message deleted')
-          embed.add_field(name = 'User: **{0}**'.format(user.name),value ='UserID: **{}**'.format(user.id),inline = False)
-          embed.add_field(name = 'Message:',value ='{}'.format(message.content),inline = False)
-          embed.add_field(name = 'Channel:',value ='{}'.format(message.channel.name),inline = False)
-          await client.send_message(logchannel,  embed=embed)
-          
-          
-@client.event
-async def on_reaction_add(reaction, user):
-  for channel in user.server.channels:
-    if channel.name == '╰☆☆-MasterNova-log-☆☆╮':
-        logchannel = channel
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='Reaction Added')
-        embed.add_field(name = 'User: **{0}**'.format(user.name),value ='UserID: **{}**'.format(user.id),inline = False)
-        embed.add_field(name = 'Message:',value ='{}'.format(reaction.message.content),inline = False)
-        embed.add_field(name = 'Channel:',value ='{}'.format(reaction.message.channel.name),inline = False)
-        embed.add_field(name = 'Emoji:',value ='{}'.format(reaction.emoji),inline = False)
-        await client.send_message(logchannel,  embed=embed)
-        
-@client.event
-async def on_reaction_remove(reaction, user):
-  for channel in user.server.channels:
-    if channel.name == '╰☆☆-MasterNova-log-☆☆╮':
-        logchannel = channel
-        r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-        embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-        embed.set_author(name='Reaction Removed')
-        embed.add_field(name = 'User: **{0}**'.format(user.name),value ='UserID: **{}**'.format(user.id),inline = False)
-        embed.add_field(name = 'Message:',value ='{}'.format(reaction.message.content),inline = False)
-        embed.add_field(name = 'Channel:',value ='{}'.format(reaction.message.channel.name),inline = False)
-        embed.add_field(name = 'Emoji:',value ='{}'.format(reaction.emoji),inline = False)
-        await client.send_message(logchannel, embed=embed)
+
 @client.event
 async def on_message(message):
     user_add_xp(message.author.id, 2)
