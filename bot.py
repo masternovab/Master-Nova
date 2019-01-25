@@ -45,7 +45,7 @@ async def status_task():
 left = '⏪'
 right = '⏩'
 r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
-general1=discord.Embed(title="General Commands | Page 1", description="__N!invite__** or **__N!authlink__** \nUse it to invite our bot to your server \n\n**__N!upvote__**\nUse this command to upvote our bot(Link will be in dm)\n\n **__N!google__**\n Use it like- ``N!google <anything>`` to google anything\n\n**__N!youtube__**\nUse it like- ``N!youtube <anything>`` to search anything on youtube\n\n**__N!membernames__**\nUse it to get member names in dm\n\n**__N!invites__** \nUse it like ``N!invites @user`` or `` N!invite`` for get invites done by you/tagged person in server. \n__Note:__**If bot does not responds that means you do not have invited any member on that server.\n\n**__N!helpmusic__**\nTo get list of music commands like: N!play,N!skip,etc.", color = discord.Color((r << 16) + (g << 8) + b))
+general1=discord.Embed(title="General Commands | Page 1", description="__N!invite__** or **__N!authlink__** \nUse it to invite our bot to your server \n\n**__N!upvote__**\nUse this command to upvote our bot(Link will be in dm)\n\n **__N!google__**\n Use it like- ``N!google <anything>`` to google anything\n\n**__N!youtube__**\nUse it like- ``N!youtube <anything>`` to search anything on youtube\n\n**__N!membernames__**\nUse it to get member names in dm\n\n**__N!invites__** \nUse it like ``N!invites @user`` or `` N!invite`` for get invites done by you/tagged person in server. \n__Note:__**If bot does not responds that means you do not have invited any member on that server.\n\n**__N!helpmusic__**\nTo get list of music commands like: N!play,N!skip,etc. \n\nremind \n You know it N!remind :D", color = discord.Color((r << 16) + (g << 8) + b))
 general2=discord.Embed(title="General Commands | Page 2", description="**__N!serverinvite__** \nUse it to get server invite link.\n\n**__N!avatar__**\nUse it like ``N!avatar or N!avatar @user``\n\n**__N!ping__**\nUse it to check ping of bot. \n\n**__N!enterme__**\nUse it like ``N!enterme <giveaway channel>`` to enter in a giveaway running in a particular channel\n\n**__N!poll__**\nUse it like ``N!poll Question Option1 Option2 ..... Option9``.\n\n**__N!github__**\nUse it like- ``N!github humanity``\n\n**__N!happybirthday @user__**\nTo wish someone happy birthday\n\n**__N!verify__**Use it to get verified role. Note- It needs proper setup.\n\n**__N!rank__**\nUse it to check your daily Rank rank(xp + level)", color = discord.Color((r << 16) + (g << 8) + b))
 general3=discord.Embed(title="Fun Commands <==> General Commands | Page 3", description="**__N!joke__**\n\n**__N!kiss @user__**\n\n**__N!hug @user__**\n\n**__N!slap @user__**\n\n**__N!damn__**\n\n**__N!burned__**\n\n**__N!savage__**\n\n**__N!thuglife__**\n\n**__N!membernames__**\n\n**__N!gender @user__**\n\n**__N!virgin @user__**\n\n**__N!meme__**\n\n**__N!rolldice__**\n\n**__N!flipcoin__**\n\n**__N!guess__**\n\n**__N!movie <movie name>__**\n\n**__N!rps <rock ,paper or scissors>__**\n\n**__N!urban <string>__**\n\n**__N!imgursearch <anything>__**\n\n**__N!gifsearch <anything>__**\n\n**__N!talk anything__**\nUse it to make bot say anything in voice channel", color = discord.Color((r << 16) + (g << 8) + b))
 mod1=discord.Embed(title="Admin and Mod Commands | Page 1", description="**__N!partner(Admin permission required) (Cooldown of 12hours)__** \nUse it like ``N!partner <partnership description>`` to partner with many servers with are connected with Master Nova Bot \n\n**__N!dm(Admin permission required)__** \nUse it like ``N!dm @user <text>`` to dm user from bot \n\n**__N!say(Admin permission required)__**\nUse it like ``N!say <text>``\n\n **__N!showme(Requires a role named Giveaways)__**\n To see how many people are taking part in giveaway\n\n**__N!pickwinner(Requires a role named Giveaways)__**\nTo pick winner of currentmost giveaways\n\n**__N!embed(Admin permission required__**\nUse it like ``N!embed <text>``\n\n**__N!membercount(Kick members Permission Required)__** \n Use it to get membercount of server\n\n**__N!lock(Kick members Permission Required)__**\nUse it like ``N!lock #channel or N!lock`` to lock a channel\n\n**__N!unlock(Kick members Permission Required)__**\nUse it like ``N!unlock #channel or N!unlock`` to unlock a channel", color = discord.Color((r << 16) + (g << 8) + b))
@@ -1904,4 +1904,15 @@ def get_xp(user_id: int):
         return 0        
  
 
+@client.command(pass_context=True)
+async def remind(ctx, time=None, *,remind=None):
+    time =int(time)
+    time = time * 60
+    output = time/60
+    await client.say("I will remind {} after {} minutes for {}".format(ctx.message.author.name, output, remind))
+    await asyncio.sleep(time)
+    await client.say("Reminder: {} by {}".format(remind, ctx.message.author.mention))
+    await client.send_message(ctx.message.author, "Reminder: {}".format(remind))
+
+	
 client.run(os.getenv("Token"))
