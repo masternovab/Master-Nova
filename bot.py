@@ -1848,6 +1848,21 @@ async def remind(ctx, time=None, *,remind=None):
     await client.say("Reminder: {} by {}".format(remind, ctx.message.author.mention))
     await client.send_message(ctx.message.author, "Reminder: {}".format(remind))
 
-
+@client.command(pass_context = True)
+async def musichelp(ctx):
+    author = ctx.message.author
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Music Commands Help')
+    embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
+    embed.add_field(name = 'N!play',value ='Use it like ``N!play <song name>``',inline = False)
+    embed.add_field(name = 'N!skip',value ='Use it like ``N!skip``',inline = False)   
+    embed.add_field(name = 'N!stop',value =' Stops a song.Use it like ``N!stop``',inline = False)	
+    embed.add_field(name = 'N!volume',value ='Sets up volume.Use it like ``N!volume <volume>``',inline = False)    
+    embed.add_field(name = 'N!np',value ='Shows the current playing song.Use it like ``N!np``',inline = False)  
+    embed.add_field(name = 'N!queue',value ='Songs for later play.Use it like ``N!queue``',inline = False)      
+    embed.add_field(name = 'N!pause',value ='Pauses a song.Use it like ``N!pause``',inline = False)   
+    await client.send_message(author,embed=embed)
+    await client.say('📨 Check DMs For Information')	
 
 client.run(os.getenv("Token"))
