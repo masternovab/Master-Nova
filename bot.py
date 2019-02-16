@@ -29,6 +29,9 @@ imgur = ImgurClient(CLIENT_ID,CLIENT_SECRET)
 
 GIPHY_API_KEY = "dc6zaTOxFJmzC"
 
+user = 'IvHWlvihY5UjlFZu'
+key = 'jsP6tHkpVMCEd2TB35LXzIEYlIvrR62A'
+
 
 client.remove_command('help')
 
@@ -1848,5 +1851,15 @@ async def remind(ctx, time=None, *,remind=None):
     await client.say("Reminder: {} by {}".format(remind, ctx.message.author.mention))
     await client.send_message(ctx.message.author, "Reminder: {}".format(remind))
 
+@client.event
+async def on_message(message):	
+    if not message.author.bot and (message.server == None or client.user in message.mentions):
+        await client.send_typing(message.channel)
+        txt = message.content.replace(message.server.me.mention,'') if message.server else message.content
+        r = json.loads(requests.post('https://cleverbot.io/1.0/ask', json={'user':user, 'key':key, 'nick':'frost', 'text':txt}).text)
+        if r['status'] == 'success':
+            await client.send_message(message.channel, r['response'] )
+
+requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'frost'})
 	
 client.run(os.getenv("Token"))
