@@ -29,9 +29,6 @@ imgur = ImgurClient(CLIENT_ID,CLIENT_SECRET)
 
 GIPHY_API_KEY = "dc6zaTOxFJmzC"
 
-user = 'IvHWlvihY5UjlFZu'
-key = 'jsP6tHkpVMCEd2TB35LXzIEYlIvrR62A'
-
 
 client.remove_command('help')
 
