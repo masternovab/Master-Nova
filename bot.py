@@ -1849,7 +1849,7 @@ async def remind(ctx, time=None, *,remind=None):
     await client.send_message(ctx.message.author, "Reminder: {}".format(remind))
 
 @client.command(pass_context = True)
-async def musichelp(ctx):
+async def helpmusic(ctx):
     author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
