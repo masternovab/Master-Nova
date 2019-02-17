@@ -1215,7 +1215,7 @@ async def help(ctx):
       await client.add_reaction(dmmessage, reaction2)
       await client.add_reaction(dmmessage, reaction3)
       await client.say('📨 Check DMs For Information')
-      await asyncio.sleep(30)
+      await asyncio.sleep(180)
       await client.delete_message(dmmessage)
 
 @client.command(pass_context=True)  
