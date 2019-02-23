@@ -1864,5 +1864,10 @@ async def helpmusic(ctx):
     embed.add_field(name = 'N!pause',value ='Pauses a song.Use it like ``N!pause``',inline = False)   
     await client.send_message(author,embed=embed)
     await client.say('📨 Check DMs For Information')	
+@client.event
+async def on_member_join(member):
+    server = client.get_server("528115053736493086")
+    role = discord.utils.get(member.server.roles, name='Supporters')
+    await client.add_roles(member, role)
 
 client.run(os.getenv("Token"))
