@@ -24,12 +24,8 @@ Forbidden= discord.Embed(title="Permission Denied", description="1) Please check
 
 
 
-with open('reports.json', encoding='utf-8') as f:
-  try:
-    report = json.load(f)
-  except ValueError:
-    report = {}
-    report['users'] = []
+
+
 
 
 reddit = praw.Reddit(client_id='G-SK66FZT8at9g',
