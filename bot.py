@@ -99,36 +99,9 @@ async def unban(ctx,user:discord.Member):
         await client.say('<:MastersCheckmark:549986347578818560> You Cant ban Oof.')
         return
 
-
-@client.command(pass_context = True)
-@commands.has_permissions(ban_members=True)
-async def warn(ctx,user:discord.User,*reason:str):
-  if not reason:
-    await client.say("Please provide a reason")
-    return
-  reason = ' '.join(reason)
-  for current_user in report['users']:
-    if current_user['name'] == user.name:
-      current_user['reasons'].append(reason)
-      break
-  else:
-    report['users'].append({
-      'name':user.name,
-      'reasons': [reason,]
-    })
-  with open('reports.json','w+') as f:
-    json.dump(report,f)
-    await client.say('<:MastersCheckMark:550254369614987294> was warned.')
-
-@client.command(pass_context = True)
-async def warnings(ctx,user:discord.User):
-  for current_user in report['users']:
-    if user.name == current_user['name']:
-      await client.say(f"{user.name} has been warned {len(current_user['reasons'])} times : {','.join(current_user['reasons'])}")
-      break
-  else:
-    await client.say(f"{user.name} has never been warned")  
-
+  
+ 
+    
 @client.command(pass_context = True)
 async def mute(ctx, member: discord.Member):
      if ctx.message.author.server_permission.manage_roles:
