@@ -857,7 +857,31 @@ async def rolecolor(ctx, role:discord.Role=None, value:str=None):
         user = ctx.message.author
         await client.edit_role(ctx.message.server, role, color = discord.Color(int(colour, base=16)))
         await client.say("{} role colour has been edited.".format(role))
-        
+
+@client.command(pass_context = True)
+async def github(ctx, *, msg = None):
+    if '@here' in msg or '@everyone' in msg:
+      return
+    if not msg: await client.say("Please specify respo. ``Format- https://github.com/masternovab/Master-Nova``")
+    else: await client.say('https://github.com/' + msg)
+    return
+    
+@client.command(pass_context = True)
+async def twittersearch(ctx, *, msg = None):
+    if '@here' in msg or '@everyone' in msg:
+      return
+    if not msg: await client.say("Please specify What you want to search. ``Format- https://twitter.com/DonaldTrump``")
+    else: await client.say('https://twitter.com/' + msg)
+    return        
+                
+@client.command(pass_context = True)
+async def youtubesearch(ctx, *, msg = None):
+    if '@here' in msg or '@everyone' in msg:
+      return
+    if not msg: await client.say("Please specify channel/video. ``Format- https://youtube.com/KingNova``")
+    else: await client.say('https://youtube.com/' + msg)
+    return                	
+	
 @client.command(pass_context = True)
 async def delrole(ctx,*, role: discord.Role = None):
     user = ctx.message.author
