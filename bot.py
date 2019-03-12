@@ -783,7 +783,8 @@ async def avatar(ctx, user: discord.Member=None):
         r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
         embed = discord.Embed(title=f'Avatar', description="**{user.name}'s** avatar", color = discord.Color((r << 16) + (g << 8) + b))
         embed.add_field(name='User: {}'.format(user.name), value='Avatar:', inline=True)        
-        embed.set_image(url = user.avatar_url)
+        embed.add_feild(name='Download.url',value = 'avatar.url', inline=True)
+	embed.set_image(url = user.avatar_url)
         await client.say(embed=embed)
 	
 @client.command(pass_context = True)
@@ -924,7 +925,7 @@ async def generalhelp(ctx):
     author = ctx.message.author
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
-    embed.set_author(name='Moderation Commands Help')
+    embed.set_author(name='General Commands Help')
     embed.set_image(url = 'https://image.ibb.co/caM2BK/help.gif')
     embed.add_field(name = 'N!guess',value ='Use it like ``N!guess <it guesses a number>``',inline = False) 
     embed.add_field(name = 'N!remind',value ='Use it like ``N!remind <time> <reason>``',inline = False)                 
