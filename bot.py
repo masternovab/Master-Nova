@@ -926,7 +926,7 @@ async def modhelp(ctx):
     embed.add_field(name = 'N!kick(kick members permission required) ',value ='Use it like ``N!kick <User>``',inline = False)
     embed.add_field(name = 'N!ban(ban memb permission required) ',value ='Use it like ``N!ban <user>``',inline = False)
     embed.add_field(name = 'N!unban(ban memb permission required) ',value ='Use it like ``N!unban <user>``',inline = False)
-    embed.add_field(name = 'N!warm(Admin permission required) ',value ='Use it like ``N!warn <user> <text>``',inline = False)
+    embed.add_field(name = 'N!warn(Admin permission required) ',value ='Use it like ``N!warn <user> <text>``',inline = False)
     embed.add_field(name = 'N!warnings(Admin permission required) ',value ='Use it like ``N!warnings <user>``',inline = False)
     embed.add_field(name = 'N!mute(Admin permission required) ',value ='Use it like ``N!mute <user>``',inline = False)
     embed.add_field(name = 'N!unmute(Admin permission required) ',value ='Use it like ``N!unmute <user>``',inline = False)
@@ -946,7 +946,7 @@ async def modhelp(ctx):
     embed.add_field(name = 'N!setupwelcomer(Admin permission required) ',value ='Use it like ``N!setupwelcomer``',inline = False)
     embed.add_field(name = 'N!rolecolour(Admin permission required) ',value ='Use it like ``N!rolecolour <role>``',inline = False)
     embed.add_field(name = 'N!roleinfo(Admin permission required) ',value ='Use it like ``N!roleinfo <role>``',inline = False)
-    embed.add_field(name = 'N!dm(Admin permission required) ',value ='Use it like ``N!dm <user> <msg>``',inline = False)
+    embed.add_field(name = 'N!(Admin permission required) ',value ='Use it like ``N!``',inline = False)
     dmmessage = await client.send_message(author,embed=embed)
     await client.say('📨 Check DMs For Information')        
                     
